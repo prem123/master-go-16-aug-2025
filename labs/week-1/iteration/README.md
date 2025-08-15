@@ -55,6 +55,18 @@ for ch := 'a'; ch <= 'z'; ch++ {
 }
 ```
 
+**Range**
+
+```go
+//  Range over string of characters
+for _, c := range "Hello" {
+  fmt.Println(c)
+}
+```
+Why are values are coming as numbers? Fix it.
+
+More on `range` later in arrays and slices
+
 ## Lab:
 
 Using loop in Go, print the following structure
