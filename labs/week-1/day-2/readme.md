@@ -1,1 +1,0 @@
-day-2 labs and exercises
