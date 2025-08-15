@@ -30,7 +30,7 @@ func main() {
 }
 ```
 
-Note: No need to put ( braces around the for condition ). In fact, if you do it's a syntax error. Try it.
+Note: No need to put ( parenthesis around the for condition ). In fact, if you do it's a syntax error. Try it.
 
 Now let's try using the for loop as a while in other languages:
 
