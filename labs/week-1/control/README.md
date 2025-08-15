@@ -120,14 +120,7 @@ func main() {
 
 <br>
 
-## Lab 1:
-
-In the last unit test example you have seen the `addContact` function having a chaining of `if-else` for phone number. Convert the `if-else` chaining to `switch`
-
-[Unit test program](../unit-testing#write-unit-test)
-
-
-## Lab 2:
+## Lab:
 
 1. Write a function called `hello` that receives a name and prints hello, <name>
 for e.g `Hello("Chris")` prints `Hello, Chris`
@@ -143,5 +136,3 @@ for e.g `Hello("Chris")` prints `Hello, Chris`
     - `Bonjour, Chris` when `Hello("Chris", "French")`.
     - rest of the requirement will remain same.
     - modify the program to use `switch` statement instead of using `if`.
-
-5. Write unit tests
