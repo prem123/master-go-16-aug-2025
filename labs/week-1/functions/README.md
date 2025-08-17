@@ -30,6 +30,100 @@ hello(1234)
 // compile this code and see that happens
 ```
 
+## Variadic Functions in Go
+
+A variadic function is a function that can accept a variable (changing) number of arguments.
+This is useful when you don’t know in advance how many values will be passed.
+
+- Declared using ... before the type of the last parameter.
+```go
+func myFunc(nums ...int) { }
+```
+- Inside the function, `nums` behaves like a slice of that type ([]int in this case).
+- You can pass **zero, one, or many arguments**.
+- You can also **expand an existing `slice`** into variadic arguments using `slice...`
+
+### Example 1: Sum of Numbers
+
+```go
+// variadic function
+func sum(nums ...int) int {
+    total := 0
+    for _, n := range nums {
+        total += n
+    }
+    return total
+}
+
+func main() {
+    fmt.Println(sum())              // 0 (no numbers passed)
+    fmt.Println(sum(1, 2, 3))       // 6
+    fmt.Println(sum(10, 20, 30, 40)) // 100
+
+    numbers := []int{5, 10, 15}
+    fmt.Println(sum(numbers...)) // expand slice → 30
+}
+```
+
+### Example 2: Print Any Number of Strings
+
+```go
+// variadic with strings
+func greet(names ...string) {
+    for _, n := range names {
+        fmt.Printf("Hello, %s!\n", n)
+    }
+}
+
+func main() {
+    greet("Alice")
+    greet("Bob", "Charlie", "Diana")
+}
+```
+
+### Example 3: Mixing Fixed + Variadic Parameters
+
+```go
+// first argument is required, rest are optional
+func introduce(role string, names ...string) {
+    fmt.Printf("Role: %s\n", role)
+    for _, n := range names {
+        fmt.Println(" -", n)
+    }
+}
+
+func main() {
+    introduce("Instructor", "Ashish", "Neha")
+    introduce("Student", "Rahul")
+}
+
+```
+
+### 📝 Lab: Variadic Functions Practice
+
+Problem Statement
+
+Write a Go program with a variadic function that finds the maximum number among any number of integers.
+
+### Requirements
+
+1. Define a function `max(nums ...int) int` that:
+- Accepts zero, one, or many integers.
+- Returns the **largest integer**.
+- If no numbers are passed, return 0 (or a message).
+
+2. In `main()`:
+- Call `max()` with different sets of numbers:
+- No numbers
+- Three numbers
+- A `slice` expanded with ...
+
+3. Print the result for each case.
+
+### 📝 Bonus Challenge: 
+
+Create another variadic function `concat(words ...string) string` that joins any number of words into a single sentence.
+
 ## Return value
 The function definition should define the return type if the method returns a value.
 

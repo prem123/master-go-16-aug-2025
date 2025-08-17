@@ -29,9 +29,15 @@ var i int = 10
 var name string = "ten"
 ```
 
+## Variables
+[More on Variables](https://go.dev/doc/effective_go#variables)
+
+
 ## Types in Go
 Go is a strongly typed language, like Java, C, C++, and Python. Go has nine kinds of types,
 they are:
+
+[Built-In Types](https://go.dev/ref/spec#Boolean_types)
 
 - strings: `string`.
 - signed integers: `int8`, `int16`, `int32`, `int64`.
