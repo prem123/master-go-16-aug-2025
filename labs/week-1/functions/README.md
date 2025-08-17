@@ -30,6 +30,77 @@ hello(1234)
 // compile this code and see that happens
 ```
 
+## Return value
+The function definition should define the return type if the method returns a value.
+
+```go
+// Here last int is the return type
+func sum(a int, b int) int {
+  return a + b
+}
+```
+
+One of Go's unusual features is that functions and methods can return multiple values. In case of multiple return type, you need to put them in parenthesis (n int, err error)
+
+```go
+// In Go, Write function can return a count and an error: "Yes, you wrote some bytes but not all of them because the disk was full".
+
+func Write(b []byte) (n int, err error)
+```
+
+## Multiple return values
+Multiple assignment is important to understand because you can return multiple values from a function.
+
+```go
+// This is a function declaration for sum, which takes two arguments, two int, and returns an int.
+func sum(a int, b int) int
+```
+
+```go
+// This is a function declaration for h, which takes two arguments, two ints, and returns three values, two int s and a string.
+func h(i, j int) (int, int, string)
+```
+
+📋 Your program must return the number of values specified in the function signature.
+```go
+package main
+
+import "fmt"
+
+// swap switches the values of a and b
+func swap(a int, b int) (int, int) {
+  return b, a
+}
+
+func main() {
+  a, b := swap(2, 5)
+  fmt.Println(a, b)
+}
+```
+
+When you call a function that returns multiple values, you must assign all of them or none
+of them.
+
+If you want to use only the first value you can ignore the second by assigning it
+to the underscore variable, _.
+
+```go
+func main() {
+  a, _ := swap(2, 5)
+  fmt.Println(a)
+}
+```
+
+## Named result parameters
+The return or result "parameters" of a Go function can be given names. 
+
+The names are not mandatory but they can make code shorter and clearer: they're documentation. If we name the results of `nextInt` it becomes obvious which returned `int` is which.
+
+```go
+func nextInt(b []byte, pos int) (value, nextPos int)
+```
+
+
 ## Variadic Functions in Go
 
 A variadic function is a function that can accept a variable (changing) number of arguments.
@@ -124,75 +195,6 @@ Write a Go program with a variadic function that finds the maximum number among 
 
 Create another variadic function `concat(words ...string) string` that joins any number of words into a single sentence.
 
-## Return value
-The function definition should define the return type if the method returns a value.
-
-```go
-// Here last int is the return type
-func sum(a int, b int) int {
-  return a + b
-}
-```
-
-One of Go's unusual features is that functions and methods can return multiple values. In case of multiple return type, you need to put them in parenthesis (n int, err error)
-
-```go
-// In Go, Write function can return a count and an error: "Yes, you wrote some bytes but not all of them because the disk was full".
-
-func Write(b []byte) (n int, err error)
-```
-
-## Multiple return values
-Multiple assignment is important to understand because you can return multiple values from a function.
-
-```go
-// This is a function declaration for sum, which takes two arguments, two int, and returns an int.
-func sum(a int, b int) int
-```
-
-```go
-// This is a function declaration for h, which takes two arguments, two ints, and returns three values, two int s and a string.
-func h(i, j int) (int, int, string)
-```
-
-📋 Your program must return the number of values specified in the function signature.
-```go
-package main
-
-import "fmt"
-
-// swap switches the values of a and b
-func swap(a int, b int) (int, int) {
-  return b, a
-}
-
-func main() {
-  a, b := swap(2, 5)
-  fmt.Println(a, b)
-}
-```
-
-When you call a function that returns multiple values, you must assign all of them or none
-of them.
-
-If you want to use only the first value you can ignore the second by assigning it
-to the underscore variable, _.
-
-```go
-func main() {
-  a, _ := swap(2, 5)
-  fmt.Println(a)
-}
-```
-
-## Named result parameters
-The return or result "parameters" of a Go function can be given names. 
-
-The names are not mandatory but they can make code shorter and clearer: they're documentation. If we name the results of `nextInt` it becomes obvious which returned `int` is which.
-
-```go
-func nextInt(b []byte, pos int) (value, nextPos int)
-```
 ## Lab
 Refactor the ["Interactive Calculator Lab"](../lab/readme.md) solution into functions. Ensure that the functions follow SRP
 
