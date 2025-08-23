@@ -11,5 +11,5 @@
 1. [Zero value](./zero-value/README.md)
 1. [Iteration](./iteration/README.md)
 1. [Control](./control/README.md)
-1. [Lab](./lab/README.md)
-1. [Errors](./errors/README.md)
+1. [Lab](./lab/readme.md)
+1. [Errors](./errors/readme.md)
