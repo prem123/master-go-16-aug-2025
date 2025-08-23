@@ -18,6 +18,7 @@ func main() {
 		// that means there is an error
 		// take decision, stop program or return error to the caller
 		fmt.Println("zero div error: ", err)
+
 	} else {
 		// otherwise all is fine go ahead.
 		fmt.Println(result)
