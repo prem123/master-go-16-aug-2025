@@ -31,13 +31,13 @@ func main() {
 	}
 
 	weekdays := map[int]string{
-		1: "Monday",
-		2: "Tuesday",
-		3: "Wednesday",
+		100: "Monday",
+		200: "Tuesday",
+		300: "Wednesday",
 	}
 
-	fmt.Println(weekdays[2])
-	delete(weekdays, 2)
+	fmt.Println(weekdays[200])
+	delete(weekdays, 200)
 	fmt.Println(weekdays)
 
 	// iterating over a map
