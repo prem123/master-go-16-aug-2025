@@ -29,6 +29,11 @@ func main() {
 		Price:       5000.00,
 	}
 
+	// CRUD operations
+	// C - Create/add more items to the inventory
+	// R - Search the inventory
+	// U - I can update items in the inventory
+	// D - Delete items
 	listOfItems := []Inventory{item1, item2, item3}
 
 	// I want to iterate over all items and print the total price of the items?
