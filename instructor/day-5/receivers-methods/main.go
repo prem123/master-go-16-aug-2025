@@ -69,6 +69,9 @@ func calculateTotal(qty int, price float64) float64 {
 	return float64(qty) * price
 }
 
+// behaviour is defined by the public functions of a class
+// in case of Go, behaviour is defined by the "Exported receiver functions" of a struct
+
 // receiver function
 func (inv Inventory) Total() float64 {
 	return float64(inv.ProductQty) * inv.Price
