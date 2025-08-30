@@ -1,4 +1,4 @@
-## Methods
+## Methods (Receiver functions)
 
 So far we have only been writing functions. Methods are very similar to functions but they are called by invoking them on an instance of a particular type. You can call functions wherever you like, such as `Area(rectangle)` but you can only call methods on instances of type.
 
