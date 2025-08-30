@@ -10,5 +10,4 @@
 1. [Word size lab](./word-size-lab/readme.md)
 1. [Pointers](./pointers/README.md)
 1. [Structs](./structs/README.md)
-1. [Unit Testing](./unit-testing/README.md)
 1. [Project](./project-01/readme.md)
