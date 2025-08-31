@@ -16,7 +16,7 @@ The number of occurrences for word size 5 is: 24
 <details>
   <summary>Hints</summary>
 
-- **Split the string into words:** This can be done using the strings.Split function.
+- **Split the string into words:** This can be done using the `strings.Split` function.
 - **Measure the length of each word:** Loop through the words and measure their lengths.
 - **Store the frequency of each word size:** Use a map where the key is the word size, and the value is the frequency of that size.
 - **Find the word size with the maximum frequency:** Iterate through the map to find the size with the most occurrences.
