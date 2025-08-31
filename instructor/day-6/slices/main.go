@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 // TODO: difference between range and standard for loop
 
@@ -26,6 +29,9 @@ func main() {
 	fmt.Println("n1-> ", n1, "len: ", len(n1), "cap: ", cap(n1))
 	n1 = append(n1, 91)
 	fmt.Println("n1-> ", n1, "len: ", len(n1), "cap: ", cap(n1))
+	//Delete(slice, starting-index, ending-index)
+	nums = slices.Delete(nums, 2, 4)
+	fmt.Println(nums)
 	// fmt.Println("nums-> ", nums, "len: ", len(nums), "cap: ", cap(nums))
 	// multiplyByTwoSlice(nums)
 
