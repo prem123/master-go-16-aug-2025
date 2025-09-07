@@ -37,3 +37,7 @@ func GetTopStudents() []models.Student {
 	}
 	return topStudents
 }
+
+func AddNewStudent(newStudent models.Student) int {
+	return repository.Save(newStudent)
+}

@@ -32,3 +32,9 @@ func FindById(id int) (*models.Student, error) {
 	}
 	return nil, errors.New("id not found")
 }
+
+func Save(newStudent models.Student) int {
+	newStudent.Id = len(sm.Students) + 1
+	sm.Enroll(newStudent)
+	return newStudent.Id
+}
