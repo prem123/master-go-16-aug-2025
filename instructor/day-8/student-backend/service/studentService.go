@@ -1,27 +1,39 @@
 package service
 
 import (
-	"errors"
+	"os"
+	"strconv"
 	"student-backend/models"
+	"student-backend/repository"
 )
 
-var sm = models.StudentManager{} // Create a new StudentManager instance
+var TOP_GPA float64
 
 func init() {
-	sm.Enroll(models.Student{Id: 1, Name: "Alice", Age: 20, GPA: 3.5, Password: "pass1"})
-	sm.Enroll(models.Student{Id: 2, Name: "Bob", Age: 21, GPA: 3.2})
-	sm.Enroll(models.Student{Id: 3, Name: "Charlie", Age: 22, GPA: 3.9})
+	gpa := os.Getenv("TOP_GPA")
+	if gpa == "" {
+		TOP_GPA = 4.5
+	} else {
+		TOP_GPA, _ = strconv.ParseFloat(gpa, 64)
+	}
 }
 
 func GetStudentById(id int) (*models.Student, error) {
-	for _, student := range sm.Students {
-		if student.Id == id {
-			return &student, nil
-		}
-	}
-	return nil, errors.New("id not found")
+	return repository.FindById(id)
 }
 
 func GetAllStudents() []models.Student {
-	return sm.Students
+	return repository.FindAll()
+}
+
+func GetTopStudents() []models.Student {
+	var topStudents []models.Student
+	students := repository.FindAll()
+	// all students where GPA is more than 4.5
+	for _, s := range students {
+		if s.GPA > TOP_GPA {
+			topStudents = append(topStudents, s)
+		}
+	}
+	return topStudents
 }
