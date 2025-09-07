@@ -17,7 +17,7 @@ func StartServer() {
 	// students
 	// CRUD
 	// Add 			-> /students + http method POST
-	// updating -> /students + http method PUT
+	// updating -> /students + http method PUT (replace all) / PATCH (part)
 	// get all  -> /students + http method GET
 	// getBy id -> /students/{id} + http method GET -> /students/1 /students/2 /students/3
 	// delete   -> /students + http method DELETE
@@ -31,8 +31,8 @@ func StartServer() {
 	r.HandleFunc("/students", newStudentHandler).Methods(http.MethodPost)
 
 	// HomeWork : Implement this method
-	// r.HandleFunc("/students", newStudentHandler).Methods(http.MethodPut)
-	// r.HandleFunc("/students", newStudentHandler).Methods(http.MethodDelete)
+	// r.HandleFunc("/students/{id}", updateStudentHandler).Methods(http.MethodPut)
+	// r.HandleFunc("/students/{id}", deleteStudentHandler).Methods(http.MethodDelete)
 
 	r.HandleFunc("/students/top", topStudentHandler).Methods(http.MethodGet)
 
