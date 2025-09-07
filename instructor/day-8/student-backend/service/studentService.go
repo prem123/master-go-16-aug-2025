@@ -1,0 +1,27 @@
+package service
+
+import (
+	"errors"
+	"student-backend/models"
+)
+
+var sm = models.StudentManager{} // Create a new StudentManager instance
+
+func init() {
+	sm.Enroll(models.Student{Id: 1, Name: "Alice", Age: 20, GPA: 3.5, Password: "pass1"})
+	sm.Enroll(models.Student{Id: 2, Name: "Bob", Age: 21, GPA: 3.2})
+	sm.Enroll(models.Student{Id: 3, Name: "Charlie", Age: 22, GPA: 3.9})
+}
+
+func GetStudentById(id int) (*models.Student, error) {
+	for _, student := range sm.Students {
+		if student.Id == id {
+			return &student, nil
+		}
+	}
+	return nil, errors.New("id not found")
+}
+
+func GetAllStudents() []models.Student {
+	return sm.Students
+}
