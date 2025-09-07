@@ -26,7 +26,7 @@ func StartServer() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/students", studentsHandler).Methods(http.MethodGet)
-	r.HandleFunc("/students/{id}", studentHandler).Methods(http.MethodGet)
+	r.HandleFunc("/students/{id:[0-9]+}", studentHandler).Methods(http.MethodGet)
 
 	r.HandleFunc("/students", newStudentHandler).Methods(http.MethodPost)
 
@@ -44,15 +44,10 @@ func StartServer() {
 func studentHandler(w http.ResponseWriter, r *http.Request) {
 	v := mux.Vars(r)
 	studentId := v["id"]
-	id, err := strconv.Atoi(studentId)
+	id, _ := strconv.Atoi(studentId)
 
-	if err != nil {
-		log.Println("Error occoured while parsing String to int: ", err)
-		http.Error(w, "Invalid Id", http.StatusBadRequest) // response for end user, in API response
-		return
-	}
 	if student, err := service.GetStudentById(id); err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound) // response for end user, in API response
+		WriteResponse(w, map[string]string{"error": err.Error()}, http.StatusNotFound)
 	} else {
 		WriteResponse(w, student, http.StatusOK)
 	}
