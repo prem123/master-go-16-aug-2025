@@ -26,6 +26,11 @@ func Start() {
 
 	r.HandleFunc("/customers", ch.getAllCustomers).Methods(http.MethodGet)
 	r.HandleFunc("/customers", ch.addNewCustomer).Methods(http.MethodPost)
+
+	// HOMEWORK IMPLEMENT BELOW FUNCTIONALITY
+	// r.HandleFunc("/customers/{id}", ch.updateCustomer).Methods(http.MethodPut)
+	// r.HandleFunc("/customers/{id}", ch.deleteCustomer).Methods(http.MethodDelete)
+
 	r.HandleFunc("/customers/{id}", ch.getCustomer).Methods(http.MethodGet)
 
 	log.Println("Starting server on 8080 port....")
