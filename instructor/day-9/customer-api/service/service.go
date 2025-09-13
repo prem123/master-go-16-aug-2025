@@ -2,11 +2,11 @@ package service
 
 import (
 	"customer-api/model"
-	"customer-api/repository"
 )
 
 type CustomerService struct {
-	repo repository.CustomerRepositoryDB
+	// repo repository.CustomerRepositoryDB
+	repo CustomerRepository
 }
 
 func (cs *CustomerService) GetAllCustomer() ([]model.Customer, error) {
@@ -18,6 +18,11 @@ func (cs *CustomerService) GetCustomer(id string) (*model.Customer, error) {
 }
 
 // helper for service creation
-func NewCustomerService(repo repository.CustomerRepositoryDB) CustomerService {
+func NewCustomerService(repo CustomerRepository) CustomerService {
 	return CustomerService{repo}
+}
+
+type CustomerRepository interface {
+	FindAll() ([]model.Customer, error)
+	FindById(id string) (*model.Customer, error)
 }

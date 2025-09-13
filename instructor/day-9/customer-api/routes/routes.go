@@ -20,6 +20,7 @@ func Start() {
 	// Wiring the components together....
 	dbClient := NewDBClient()
 	repo := repository.NewCustomerRepositoryDB(dbClient)
+	// repo := repository.NewCustomerRepositoryStub()
 	cs := service.NewCustomerService(repo)
 	ch := NewCustomerHandler(cs)
 
