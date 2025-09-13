@@ -4,3 +4,11 @@
 docker run --rm -p 3306:3306 --name customers-db -e MYSQL_ROOT_PASSWORD=thecodecamp thecodecamp/customers-db
 ```
 
+## Mockery
+
+### Installation
+https://vektra.github.io/mockery/v3.5/installation/
+
+```bash
+brew install mockery
+```
