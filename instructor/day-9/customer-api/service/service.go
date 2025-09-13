@@ -14,12 +14,10 @@ func (cs *CustomerService) GetAllCustomer() ([]model.Customer, error) {
 }
 
 func (cs *CustomerService) GetCustomer(id string) (*model.Customer, error) {
-	repo := repository.NewCustomerRepositoryStub()
-	return repo.FindById(id)
+	return cs.repo.FindById(id)
 }
 
 // helper for service creation
-
 func NewCustomerService(repo repository.CustomerRepositoryDB) CustomerService {
 	return CustomerService{repo}
 }

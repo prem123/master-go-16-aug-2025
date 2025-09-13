@@ -10,6 +10,28 @@ type CustomerRepositoryDB struct {
 	client *sql.DB
 }
 
+func (cr CustomerRepositoryDB) FindById(id string) (*model.Customer, error) {
+	q := `SELECT 
+					customer_id, name, date_of_birth, city, zipcode, status 
+				FROM 
+					customers 
+				WHERE customer_id = ?`
+
+	row := cr.client.QueryRow(q, id)
+	err := row.Err()
+	if err != nil {
+		log.Println("Error occoured while fetching customer from DB. ", err.Error())
+		return nil, err
+	}
+	var c model.Customer
+	err = row.Scan(&c.Id, &c.Name, &c.DateofBirth, &c.City, &c.Zipcode, &c.Status)
+	if err != nil {
+		log.Println("Error occoured while scanning customer from DB. ", err.Error())
+		return nil, err
+	}
+	return &c, nil
+}
+
 func (cr CustomerRepositoryDB) FindAll() ([]model.Customer, error) {
 
 	// this is an expensive operation
