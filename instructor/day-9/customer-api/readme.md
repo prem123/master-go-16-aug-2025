@@ -3,7 +3,6 @@
 ```sh
 docker run -d --rm -p 3306:3306 --name customers-db -e MYSQL_ROOT_PASSWORD=thecodecamp thecodecamp/customers-db
 ```
-
 ## MySql connect and view tables from cli
 
 ```bash
@@ -11,6 +10,7 @@ docker exec -it customers-db bash
 
 mysql -u root -p banking
 ```
+
 
 ## Mockery
 
