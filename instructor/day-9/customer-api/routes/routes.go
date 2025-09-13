@@ -25,6 +25,7 @@ func Start() {
 	ch := NewCustomerHandler(cs)
 
 	r.HandleFunc("/customers", ch.getAllCustomers).Methods(http.MethodGet)
+	r.HandleFunc("/customers", ch.addNewCustomer).Methods(http.MethodPost)
 	r.HandleFunc("/customers/{id}", ch.getCustomer).Methods(http.MethodGet)
 
 	log.Println("Starting server on 8080 port....")

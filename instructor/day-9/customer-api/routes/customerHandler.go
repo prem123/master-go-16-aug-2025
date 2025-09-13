@@ -1,7 +1,9 @@
 package routes
 
 import (
+	"customer-api/model"
 	"customer-api/service"
+	"encoding/json"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -31,6 +33,20 @@ func (ch *CustomerHandler) getCustomer(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 	} else {
 		WriteResponse(w, customer, http.StatusOK)
+	}
+}
+
+func (ch *CustomerHandler) addNewCustomer(w http.ResponseWriter, r *http.Request) {
+
+	var customer model.Customer
+	// handle error as homework
+	json.NewDecoder(r.Body).Decode(&customer)
+
+	newCustomerId, err := ch.service.AddCustomer(customer)
+	if err != nil {
+		WriteResponse(w, err, http.StatusInternalServerError)
+	} else {
+		WriteResponse(w, map[string]int64{"id": newCustomerId}, http.StatusCreated)
 	}
 }
 

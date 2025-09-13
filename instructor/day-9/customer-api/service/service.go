@@ -17,6 +17,10 @@ func (cs *CustomerService) GetCustomer(id string) (*model.Customer, error) {
 	return cs.repo.FindById(id)
 }
 
+func (cs *CustomerService) AddCustomer(customer model.Customer) (int64, error) {
+	return cs.repo.Save(customer)
+}
+
 // helper for service creation
 func NewCustomerService(repo CustomerRepository) CustomerService {
 	return CustomerService{repo}
@@ -25,4 +29,5 @@ func NewCustomerService(repo CustomerRepository) CustomerService {
 type CustomerRepository interface {
 	FindAll() ([]model.Customer, error)
 	FindById(id string) (*model.Customer, error)
+	Save(c model.Customer) (int64, error)
 }

@@ -10,6 +10,16 @@ type CustomerRepositoryDB struct {
 	client *sql.DB
 }
 
+func (cr CustomerRepositoryDB) Save(c model.Customer) (int64, error) {
+	q := "INSERT into customers (name, date_of_birth, city, zipcode, status) values (?,?,?,?,?)"
+	result, err := cr.client.Exec(q, c.Name, c.DateofBirth, c.City, c.Zipcode, c.Status)
+	if err != nil {
+		log.Println("Error occoured while saving customer to DB. ", err.Error())
+		return 0, err
+	}
+	return result.LastInsertId()
+}
+
 func (cr CustomerRepositoryDB) FindById(id string) (*model.Customer, error) {
 	q := `SELECT 
 					customer_id, name, date_of_birth, city, zipcode, status 
