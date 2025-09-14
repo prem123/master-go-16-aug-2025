@@ -10,7 +10,21 @@ type CustomerService struct {
 }
 
 func (cs *CustomerService) GetAllCustomer() ([]model.Customer, error) {
-	return cs.repo.FindAll()
+
+	// conversion should happen of status from 0 -> In-Active
+	customers, err := cs.repo.FindAll()
+	if err != nil {
+		return nil, err
+	}
+	for idx, c := range customers {
+		if c.Status == "0" {
+			customers[idx].Status = "In-Active"
+		}
+		if c.Status == "1" {
+			customers[idx].Status = "Active"
+		}
+	}
+	return customers, nil
 }
 
 func (cs *CustomerService) GetCustomer(id string) (*model.Customer, error) {
