@@ -49,6 +49,7 @@ func Test_get_all_customers_should_return_valid_status(t *testing.T) {
 		{Id: "2", Name: "testmock2", Status: "Active"},
 	}
 
+	// Assert
 	for idx := range expected {
 		if expected[idx].Status != actual[idx].Status {
 			t.Error("Status not matching")
