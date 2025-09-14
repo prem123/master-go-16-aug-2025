@@ -4,12 +4,12 @@ import (
 	"customer-api/model"
 )
 
-type CustomerService struct {
+type DefaultCustomerService struct {
 	// repo repository.CustomerRepositoryDB
 	repo CustomerRepository
 }
 
-func (cs *CustomerService) GetAllCustomer() ([]model.Customer, error) {
+func (cs *DefaultCustomerService) GetAllCustomer() ([]model.Customer, error) {
 
 	// conversion should happen of status from 0 -> In-Active
 	customers, err := cs.repo.FindAll()
@@ -27,17 +27,17 @@ func (cs *CustomerService) GetAllCustomer() ([]model.Customer, error) {
 	return customers, nil
 }
 
-func (cs *CustomerService) GetCustomer(id string) (*model.Customer, error) {
+func (cs *DefaultCustomerService) GetCustomer(id string) (*model.Customer, error) {
 	return cs.repo.FindById(id)
 }
 
-func (cs *CustomerService) AddCustomer(customer model.Customer) (int64, error) {
+func (cs *DefaultCustomerService) AddCustomer(customer model.Customer) (int64, error) {
 	return cs.repo.Save(customer)
 }
 
 // helper for service creation
-func NewCustomerService(repo CustomerRepository) CustomerService {
-	return CustomerService{repo}
+func NewCustomerService(repo CustomerRepository) *DefaultCustomerService {
+	return &DefaultCustomerService{repo}
 }
 
 type CustomerRepository interface {

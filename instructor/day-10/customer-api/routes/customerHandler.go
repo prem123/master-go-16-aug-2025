@@ -2,7 +2,6 @@ package routes
 
 import (
 	"customer-api/model"
-	"customer-api/service"
 	"encoding/json"
 	"net/http"
 
@@ -10,7 +9,7 @@ import (
 )
 
 type CustomerHandler struct {
-	service service.CustomerService
+	service CustomerService
 }
 
 func (ch *CustomerHandler) getAllCustomers(w http.ResponseWriter, r *http.Request) {
@@ -51,6 +50,12 @@ func (ch *CustomerHandler) addNewCustomer(w http.ResponseWriter, r *http.Request
 }
 
 // helper
-func NewCustomerHandler(service service.CustomerService) CustomerHandler {
+func NewCustomerHandler(service CustomerService) CustomerHandler {
 	return CustomerHandler{service}
+}
+
+type CustomerService interface {
+	GetAllCustomer() ([]model.Customer, error)
+	GetCustomer(id string) (*model.Customer, error)
+	AddCustomer(customer model.Customer) (int64, error)
 }
