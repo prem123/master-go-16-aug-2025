@@ -1,0 +1,7 @@
+packages:
+    customer-api/service:
+        interfaces:
+            CustomerRepository:
+    customer-api/routes:
+        interfaces:
+            CustomerService:
