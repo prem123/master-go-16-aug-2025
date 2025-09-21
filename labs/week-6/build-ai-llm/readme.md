@@ -98,14 +98,11 @@ import (
 	"github.com/tmc/langchaingo/llms/googleai"
 )
 
-const embeddingModelName = "text-embedding-004"
-
 func connectGemini(ctx context.Context) *googleai.GoogleAI {
 	apiKey := os.Getenv("GEMINI_API_KEY")
-	// geminiClient, err := googleai.New(ctx, googleai.WithAPIKey(apiKey))
   geminiClient, err := googleai.New(ctx,
 		googleai.WithAPIKey(apiKey),
-		googleai.WithDefaultEmbeddingModel(embeddingModelName))
+		googleai.WithDefaultEmbeddingModel("text-embedding-004"))
 
 	if err != nil {
 		log.Fatal(err)
@@ -113,6 +110,12 @@ func connectGemini(ctx context.Context) *googleai.GoogleAI {
 	return geminiClient
 }
 ```
+
+Run to install Gemeni AI dependencies:
+```bash
+go mod tidy
+```
+
 
 6. ### Adding Weaviate (Vector Store)
 
@@ -139,8 +142,13 @@ func connectWeaviate(ctx context.Context, geminiClient *googleai.GoogleAI) weavi
 	}
 	return wvStore
 }
-
 ```
+
+Run to install Weaviate dependencies:
+```bash
+go mod tidy
+```
+
 
 7. ### HTTP Server and Add Documents Endpoint
 We’ll now create an HTTP server that exposes two endpoints:
@@ -150,13 +158,18 @@ We’ll now create an HTTP server that exposes two endpoints:
 
 
 ```go
-server := &ragServer{
-  ctx:          ctx,
-  wvStore:      wvStore,
-  geminiClient: geminiClient,
-}
 
 func main() {
+	ctx := context.Background()
+	geminiClient := connectGemini(ctx)
+	wvStore := connectWeaviate(ctx, geminiClient)
+	
+	server := &ragServer{
+		ctx:          ctx,
+		wvStore:      wvStore,
+		geminiClient: geminiClient,
+	}
+
   mux := http.NewServeMux()
 	mux.HandleFunc("POST /add/", server.addDocumentsHandler)
 
@@ -200,8 +213,6 @@ This will Search relevant docs & use Gemini for answers.
 Update `main.go`
 
 ```go
-
-const generativeModelName = "gemini-1.5-flash"
 
 func main() {
   ...
@@ -258,7 +269,6 @@ Question:
 Context:
 %s
 `
-
 ```
 
 9. ### Run the Server
