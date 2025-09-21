@@ -170,7 +170,7 @@ func main() {
 		geminiClient: geminiClient,
 	}
 
-  mux := http.NewServeMux()
+	mux := http.NewServeMux()
 	mux.HandleFunc("POST /add/", server.addDocumentsHandler)
 
 	port := cmp.Or(os.Getenv("SERVERPORT"), "9020")
